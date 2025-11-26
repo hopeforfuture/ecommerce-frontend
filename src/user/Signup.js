@@ -87,20 +87,25 @@ const Signup = () => {
     );
   };
 
+  const renderErrorMessages = (error) => {
+    if (Array.isArray(error)) {
+      return error.map((err, i) => (
+        <div key={i}>
+          {err}
+          <br />
+        </div>
+      ));
+    }
+    return error;
+  };
+
   const showError = () => {
     return (
       <div
         className="alert alert-danger"
         style={{ display: error ? "" : "none" }}
       >
-        {Array.isArray(error)
-          ? error.map((err, i) => (
-              <div key={i}>
-                {err}
-                <br />
-              </div>
-            ))
-          : error}
+        {renderErrorMessages(error)}
       </div>
     );
   };
